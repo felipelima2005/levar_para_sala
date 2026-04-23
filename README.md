@@ -31,4 +31,4 @@ Este repositório é de **uso pessoal**. Os projetos aqui não seguem necessaria
 
 ## 📬 Contato
 
-Feito por **[Seu Nome]** — sinta-se à vontade para explorar!
+Feito por **[Felipe Lima]** — sinta-se à vontade para explorar!
