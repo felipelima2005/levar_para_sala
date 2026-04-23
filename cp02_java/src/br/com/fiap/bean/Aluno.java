@@ -6,6 +6,7 @@ package br.com.fiap.bean;
 //Raphael Gomes - Rm572637
 
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -21,9 +22,9 @@ public class Aluno {
     }
 
     public Aluno(int registroMatricula, String nomeCompleto, LocalDate dataDeNascimento) {
-        this.registroMatricula = registroMatricula;
+       setRegistroMatricula(registroMatricula);
         this.nomeCompleto = nomeCompleto;
-        this.dataDeNascimento = dataDeNascimento;
+        setDataDeNascimento(dataDeNascimento);
     }
 
     //metodos get/set
@@ -31,7 +32,17 @@ public class Aluno {
         return registroMatricula;
     }
     public void setRegistroMatricula(int registroMatricula) {
-        this.registroMatricula = registroMatricula;
+        try{
+            if (registroMatricula >= 8000 && registroMatricula <= 599999) {
+                this.registroMatricula = registroMatricula;
+            }else {
+                throw new Exception("Matricula fora da faixa permitida");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.exit(0);
+        }
     }
     public String getNomeCompleto() {
         return nomeCompleto;
@@ -43,14 +54,28 @@ public class Aluno {
         return dataDeNascimento;
     }
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
+        try{
+            LocalDate atual = LocalDate.now().plusDays(1);
+            LocalDate dataInicial = LocalDate.parse("1959-12-31");
+            if (dataDeNascimento.isAfter(dataInicial) && dataDeNascimento.isBefore(atual)){
+                this.dataDeNascimento = dataDeNascimento;
+
+            }else {
+                throw new Exception("Data fora da faixa permitida");
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.exit(0);
+        }
     }
 
     //metodos da classe
     public String caucularIdadeCompleta(LocalDate dataAtual){
-        dataAtual = LocalDate.now();
-        Period idade =  ;
-        return idade.between(dataDeNascimento,dataAtual);
+        Period idade = Period.between(dataDeNascimento, dataAtual);
+        String completa = String.format(idade.getYears() + " anos, " + idade.getMonths() + " meses, " + idade.getDays() + " dias.");
+        return completa;
 
 
     }
