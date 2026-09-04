@@ -37,7 +37,7 @@ public class ClienteDao {
     }
 
     public  String alterar(Cliente cliente){
-        String sql = "update ddd_cliete set nomeCliente=?, placa=? where idCliente=?";
+        String sql = "update ddd_cliete set nome_cliente=?, placa=? where id_cliente=?";
         try(PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setString(1, cliente.getNomeCliente());
             ps.setString(2, cliente.getPlaca());
@@ -53,7 +53,7 @@ public class ClienteDao {
     }
 
     public  String excluir(Cliente cliente){
-        String sql = "delete from ddd_cliente where idCliente=?";
+        String sql = "delete from ddd_cliente where id_cliente=?";
         try(PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, cliente.getIdCliente());
             if (ps.executeUpdate() > 0) {
@@ -67,7 +67,7 @@ public class ClienteDao {
     }
 
     public ArrayList<Cliente> listarTodos(){
-        String sql = "select * from ddd_cliente order by idCliente";
+        String sql = "select * from ddd_cliente order by id_cliente";
         ArrayList<Cliente> listarCliente = new ArrayList<>();
         try(PreparedStatement ps = getCon().prepareStatement(sql);
             ResultSet rs = ps.executeQuery()) {
