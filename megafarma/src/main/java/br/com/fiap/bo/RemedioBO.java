@@ -3,6 +3,7 @@ package br.com.fiap.bo;
 import br.com.fiap.dao.RemedioDAO;
 import br.com.fiap.to.RemedioTO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RemedioBO {
@@ -13,5 +14,15 @@ public class RemedioBO {
         //aqui implementa as regras de negocio
         return remedioDAO.findAll();
     }
+    public RemedioTO save(RemedioTO remedio){
+        remedioDAO = new RemedioDAO();
+        //aqui se implementa a regra de negocio
+        //verificando se o remedio esta vencido
+        if (remedio.getDataDeValidade().isBefore(LocalDate.now())){
+            return null;
+        }
+        return remedioDAO.save(remedio);
+    }
+
 
 }
