@@ -27,5 +27,17 @@ public class RemedioBO {
         return remedioDAO.save(remedio);
     }
 
+    public boolean delete(Long codigo){
+        remedioDAO = new RemedioDAO();
+        //aqui se implementa a regra de negocio
+        return remedioDAO.delete(codigo);
+    }
+
+    public RemedioTO update(RemedioTO remedio){
+        remedioDAO = new RemedioDAO();
+        //aqui se implementa a regra de negocio
+        return remedioDAO.update(remedio);
+    }
+
 
 }
